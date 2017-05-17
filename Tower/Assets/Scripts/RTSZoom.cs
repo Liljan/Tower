@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RTSCamera : MonoBehaviour
+public class RTSZoom : MonoBehaviour
 {
 
 }
