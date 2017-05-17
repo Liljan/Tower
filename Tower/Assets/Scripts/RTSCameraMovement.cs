@@ -21,29 +21,32 @@ public class RTSCameraMovement : MonoBehaviour
 
     void Update()
     {
-        Movement();
         Zoom();
+        Movement();
     }
 
     private void Movement()
     {
+        float speedFactor = transform.position.y / zoomRange.y;
+
+
 
         if (Input.GetButton("Up"))
         {
-            transform.Translate(transform.forward * Time.deltaTime * PanSpeed, Space.World);
+            transform.Translate(transform.forward * Time.deltaTime * speedFactor * PanSpeed, Space.World);
         }
         else if (Input.GetButton("Down"))
         {
-            transform.Translate(-transform.forward * Time.deltaTime * PanSpeed, Space.World);
+            transform.Translate(-transform.forward * Time.deltaTime * speedFactor * PanSpeed, Space.World);
         }
 
         if (Input.GetButton("Right"))
         {
-            transform.Translate(transform.right * Time.deltaTime * PanSpeed, Space.World);
+            transform.Translate(transform.right * Time.deltaTime * speedFactor * PanSpeed, Space.World);
         }
         else if (Input.GetButton("Left"))
         {
-            transform.Translate(-transform.right * Time.deltaTime * PanSpeed, Space.World);
+            transform.Translate(-transform.right * Time.deltaTime * speedFactor * PanSpeed, Space.World);
         }
     }
 
@@ -53,7 +56,7 @@ public class RTSCameraMovement : MonoBehaviour
 
         Vector3 pos = transform.position + cameraTransform.forward * Time.deltaTime * mouseScroll * zoomSpeed;
 
-        if(pos.y > zoomRange.x && pos.y < zoomRange.y)
+        if (pos.y > zoomRange.x && pos.y < zoomRange.y)
         {
             transform.position = pos;
         }
